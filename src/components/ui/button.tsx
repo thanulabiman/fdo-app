@@ -74,7 +74,7 @@ export const Button = forwardRef<View, ButtonProps>(
     const secondaryForegroundColor = useColor('secondaryForeground');
     const destructiveColor = useColor('red');
     const destructiveForegroundColor = useColor('destructiveForeground');
-    const greenColor = useColor('green');
+    const successColor = useColor('success');
     const borderColor = useColor('border');
 
     // Animation values for liquid glass effect
@@ -113,7 +113,7 @@ export const Button = forwardRef<View, ButtonProps>(
         case 'destructive':
           return { ...baseStyle, backgroundColor: destructiveColor };
         case 'success':
-          return { ...baseStyle, backgroundColor: greenColor };
+          return { ...baseStyle, backgroundColor: successColor};
         case 'outline':
           return {
             ...baseStyle,

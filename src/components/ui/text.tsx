@@ -1,14 +1,20 @@
-import { useColor } from '@/hooks/useColor';
-import { FONT_SIZE } from '@/theme/globals';
-import React, { forwardRef } from 'react';
+import { useColor } from "@/hooks/useColor";
+import { FONT_SIZE } from "@/theme/globals";
+import React, { forwardRef } from "react";
 import {
   Text as RNText,
   TextProps as RNTextProps,
   TextStyle,
-} from 'react-native';
+} from "react-native";
 
 type TextVariant =
-  'body' | 'title' | 'subtitle' | 'caption' | 'heading' | 'link';
+  | "body"
+  | "title"
+  | "subtitle"
+  | "caption"
+  | "heading"
+  | "link"
+  | "charm";
 
 interface TextProps extends RNTextProps {
   variant?: TextVariant;
@@ -17,21 +23,21 @@ interface TextProps extends RNTextProps {
   children: React.ReactNode;
 }
 
-const headingVariants: TextVariant[] = ['heading', 'title', 'subtitle'];
+const headingVariants: TextVariant[] = ["heading", "title", "subtitle"];
 
 export const Text = React.memo(
   forwardRef<RNText, TextProps>(
     (
-      { variant = 'body', lightColor, darkColor, style, children, ...props },
-      ref
+      { variant = "body", lightColor, darkColor, style, children, ...props },
+      ref,
     ) => {
-      const textColor = useColor('text', {
+      const textColor = useColor("text", {
         light: lightColor,
         dark: darkColor,
       });
-      const mutedColor = useColor('textMuted');
+      const mutedColor = useColor("textMuted");
       const defaultAccessibilityRole = headingVariants.includes(variant)
-        ? 'header'
+        ? "header"
         : undefined;
 
       const getTextStyle = (): TextStyle => {
@@ -40,43 +46,51 @@ export const Text = React.memo(
         };
 
         switch (variant) {
-          case 'heading':
+          case "heading":
             return {
               ...baseStyle,
               fontSize: 28,
-              fontWeight: '700',
+              fontWeight: "700",
             };
-          case 'title':
+          case "title":
             return {
               ...baseStyle,
               fontSize: 24,
-              fontWeight: '700',
+              fontWeight: "700",
             };
-          case 'subtitle':
+          case "subtitle":
             return {
               ...baseStyle,
               fontSize: 19,
-              fontWeight: '600',
+              fontWeight: "600",
             };
-          case 'caption':
+          case "caption":
             return {
               ...baseStyle,
               fontSize: FONT_SIZE,
-              fontWeight: '400',
+              fontWeight: "400",
               color: mutedColor,
             };
-          case 'link':
+          case "link":
             return {
               ...baseStyle,
               fontSize: FONT_SIZE,
-              fontWeight: '500',
-              textDecorationLine: 'underline',
+              fontWeight: "500",
+              textDecorationLine: "underline",
             };
+          case "charm":
+            return {
+              ...baseStyle,
+              fontSize: FONT_SIZE,
+              fontWeight: "500",
+              fontFamily: "charm-bold",
+            };
+
           default: // 'body'
             return {
               ...baseStyle,
               fontSize: FONT_SIZE,
-              fontWeight: '400',
+              fontWeight: "400",
             };
         }
       };
@@ -91,8 +105,8 @@ export const Text = React.memo(
           {children}
         </RNText>
       );
-    }
-  )
+    },
+  ),
 );
 
-Text.displayName = 'Text';
+Text.displayName = "Text";

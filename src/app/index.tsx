@@ -17,23 +17,23 @@ export default function HomeScreen() {
   return (
     <View>
       <View
-        style={{ height: 400, justifyContent: "center", alignItems: "center" }}
+        style={{ height: 400, justifyContent: "center", alignItems: "center",}}
       >
         <Text
           style={{
-            fontSize: 60,
+            fontSize: 55,
             textAlign: "center",
           }}
         >
           {"Welcome to\n"}
           <Text
             style={{
-              fontSize: 50,
-              color: "#0d71dd",
+              fontSize: 60,
+              color: "#0735de",
               fontWeight: 600,
             }}
           >
-            STOCKFLOW
+            StockFlow
           </Text>
         </Text>
       </View>
@@ -68,7 +68,9 @@ export default function HomeScreen() {
           />
         </View>
 
-        <Button icon={LogIn} onPress={() => console.log("Button pressed!")}>Sign In</Button>
+        <Button icon={LogIn} onPress={() => {
+          router.replace("/(tab)/StockRequest")
+        }}>Sign In</Button>
       </View>
     </View>
   );
